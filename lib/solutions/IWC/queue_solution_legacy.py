@@ -66,6 +66,7 @@ REGISTERED_PROVIDERS: list[Provider] = [
 class Queue:
     def __init__(self):
         self._queue = []
+        self._counter = 0
 
     def _priority_for_task(self, task):
         metadata = task.metadata
@@ -80,6 +81,8 @@ class Queue:
         return metadata.get("earliest_timestamp", MAX_TIMESTAMP)
 
     def enqueue(self, item: TaskSubmission) -> int:
+        item.queue_index = self._counter
+        self._counter +=1
 
         metadata = item.metadata
         metadata.setdefault("priority", Priority.NORMAL)
@@ -90,7 +93,6 @@ class Queue:
 
         # would enquire if there needed to be a log that a
         # duplicate task was added which would go here in an else block
-
         return self.size
 
     def task_already_in_queue(self, item: TaskSubmission) -> bool:
@@ -237,4 +239,5 @@ async def queue_worker():
         logger.info(f"Finished task: {task}")
 ```
 """
+
 
