@@ -137,8 +137,8 @@ class Queue:
         self._queue.sort(
             key=lambda i: (
                 self._priority_for_task(i),
-                self._earliest_timestamp_for_task(i),
                 i.enqueue_index,        # task loaded earlier get processes earlier; FIFO
+                self._earliest_timestamp_for_task(i),
             )
         )
 
@@ -240,3 +240,4 @@ async def queue_worker():
         logger.info(f"Finished task: {task}")
 ```
 """
+
