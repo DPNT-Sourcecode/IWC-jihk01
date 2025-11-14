@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from .utils import call_dequeue, call_enqueue, call_size, iso_ts, run_queue
 
-from solutions.IWC.queue_solution_legacy import Queue
 from solutions.IWC.task_types import TaskSubmission
 from solutions.IWC.queue_solution_entrypoint import QueueSolutionEntrypoint
+from solutions.IWC.queue_solution_legacy import Priority
 
 def test_enqueue_size_dequeue_flow() -> None:
     run_queue([
@@ -43,12 +43,11 @@ def test_maintain_schedule_order() -> None:
     queue.enqueue(t1)
     queue.enqueue(t2)
 
+    # this is a hacky test but here I am going to simulate the order being shuffled
+    # as happens in dequeue due to the 3 rule
+    queue_shuffled = [queue[1] + queue[0]]
 
-    t1 = TaskSubmission(
-        provider="companies",
-        user_id=3,
-        timestamp=iso_ts(delta_minutes=0),
-        metadata={}
-    )
+    #
+
 
 
