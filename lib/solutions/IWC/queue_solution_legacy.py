@@ -80,12 +80,26 @@ class Queue:
         return metadata.get("earliest_timestamp", MAX_TIMESTAMP)
 
     def enqueue(self, item: TaskSubmission) -> int:
+
         metadata = item.metadata
         metadata.setdefault("priority", Priority.NORMAL)
         metadata.setdefault("earliest_timestamp", MAX_TIMESTAMP)
-        self._queue.append(item)
+
+        if not self.task_already_in_queue(item):
+            self._queue.append(item)
+
+        # would enquire if there needed to be a log that a
+        # duplicate task was added which would go here in an else block
+
         return self.size
 
+    def task_already_in_queue(self, item: TaskSubmission) -> bool:
+        for task in self._queue:
+            if item.user_id == task.user_id and item.provider == task.provider:
+                return True
+        return False
+
+        metadata = task.metadata
     def dequeue(self):
         if self.size == 0:
             return None
