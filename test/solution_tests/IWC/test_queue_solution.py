@@ -43,6 +43,9 @@ class TestQueue(unittest.TestCase):
         )
 
     def test_maintain_schedule_order(self) -> None:
+        self.assertEqual(self.t1.provider, "companies_house")
+        self.assertNotEqual(self.t2.provider, "companies_house")
+
         self.queue.enqueue(self.t1)
         self.queue.enqueue(self.t2)
 
@@ -50,9 +53,9 @@ class TestQueue(unittest.TestCase):
         # as happens in dequeue due to the 3 rule
         queue_shuffled = [self.queue._queue[1], self.queue._queue[0]]
         with patch.object(self.queue, "_queue", new=queue_shuffled):
-            a = self.queue.dequeue()
-            b = self.t1
-            self.assertEqual(self.queue.dequeue(), self.t1)   # should be t1
+
+            self.assertEqual(self.queue.dequeue().provider, "companies_house")   # should be t1
+
 
 
 
