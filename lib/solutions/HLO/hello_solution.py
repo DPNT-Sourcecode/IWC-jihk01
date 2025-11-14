@@ -1,9 +1,8 @@
-import typing
 
 class HelloSolution:
     
     # friend_name = unicode string
-    def hello(self, friend_name):
+    def hello(self, friend_name: str) -> str:
+        return "Hello world"
 
-        raise NotImplementedError()
 
