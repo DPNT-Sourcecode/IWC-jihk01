@@ -25,24 +25,30 @@ def test_task_already_in_queue() -> None:
 
 def test_maintain_schedule_order() -> None:
     queue = QueueSolutionEntrypoint()
-    queue.enqueue()
 
     t1 = TaskSubmission(
         provider="companies_house",
         user_id=3,
         timestamp=iso_ts(delta_minutes=0),
-        metadata={}
+        metadata={"priority": Priority.NORMAL}
     )
 
-    t1 = TaskSubmission(
+    t2 = TaskSubmission(
         provider="companies_house",
+        user_id=3,
+        timestamp=iso_ts(delta_minutes=0),
+        metadata={"priority": Priority.NORMAL}
+    )
+
+    queue.enqueue(t1)
+    queue.enqueue(t2)
+
+
+    t1 = TaskSubmission(
+        provider="companies",
         user_id=3,
         timestamp=iso_ts(delta_minutes=0),
         metadata={}
     )
-
-
-
-
 
 
