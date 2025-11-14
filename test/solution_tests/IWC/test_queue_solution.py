@@ -23,9 +23,9 @@ def test_task_already_in_queue() -> None:
 
 
 def test_maintain_schedule_order() -> None:
-    # queue = QueueSolutionEntrypoint()
-    # queue.enqueue()
-    e = call_enqueue("companies_house", 1, iso_ts(delta_minutes=0))
-    a=1
+    queue = QueueSolutionEntrypoint()
+    queue.enqueue()
+
+
 
 
