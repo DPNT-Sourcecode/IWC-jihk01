@@ -34,7 +34,7 @@ def test_maintain_schedule_order() -> None:
     )
 
     t2 = TaskSubmission(
-        provider="companies_house",
+        provider="companies",
         user_id=3,
         timestamp=iso_ts(delta_minutes=0),
         metadata={"priority": Priority.NORMAL}
@@ -48,6 +48,7 @@ def test_maintain_schedule_order() -> None:
     queue_shuffled = [queue[1] + queue[0]]
 
     #
+
 
 
 
