@@ -46,8 +46,9 @@ def test_maintain_schedule_order() -> None:
     # this is a hacky test but here I am going to simulate the order being shuffled
     # as happens in dequeue due to the 3 rule
     queue_shuffled = [queue._queue[1], queue._queue[0]]
+    from unittest.mock import patch,
+    with patch.object(queue, "_queue")
 
-    with mock
 
 
 
