@@ -19,5 +19,4 @@ def test_task_already_in_queue() -> None:
         call_enqueue("companies", 1, iso_ts(delta_minutes=0)).expect(2),
         call_enqueue("companies_house", 1, iso_ts(delta_minutes=0)).expect(2),
         call_enqueue("companies_house", 2, iso_ts(delta_minutes=0)).expect(3),
-
     ])
