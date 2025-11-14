@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+import unittest
+
 from .utils import call_dequeue, call_enqueue, call_size, iso_ts, run_queue
 
 from solutions.IWC.task_types import TaskSubmission
-from solutions.IWC.queue_solution_entrypoint import QueueSolutionEntrypoint
 from solutions.IWC.queue_solution_legacy import Priority, Queue
 
 def test_enqueue_size_dequeue_flow() -> None:
@@ -46,8 +47,11 @@ def test_maintain_schedule_order() -> None:
     # this is a hacky test but here I am going to simulate the order being shuffled
     # as happens in dequeue due to the 3 rule
     queue_shuffled = [queue._queue[1], queue._queue[0]]
-    from unittest.mock import patch,
-    with patch.object(queue, "_queue")
+    from unittest.mock import patch
+    with patch.object(queue, "_queue", new=queue_shuffled):
+        assertEqual(queue.dequeue(), t1)   # should be t1
+        a=1
+
 
 
 
