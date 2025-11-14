@@ -16,7 +16,8 @@ def test_enqueue_size_dequeue_flow() -> None:
 def test_task_already_in_queue() -> None:
     run_queue([
         call_enqueue("companies_house", 1, iso_ts(delta_minutes=0)).expect(1),
-        call_size().expect(1),
-        call_dequeue().expect("companies_house", 1),
-        
+        call_enqueue("companies", 1, iso_ts(delta_minutes=0)).expect(2),
+        call_enqueue("companies_house", 1, iso_ts(delta_minutes=0)).expect(2),
+        call_enqueue("companies_house", 2, iso_ts(delta_minutes=0)).expect(3),
+
     ])
