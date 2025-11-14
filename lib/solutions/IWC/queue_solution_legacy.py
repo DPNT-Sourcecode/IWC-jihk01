@@ -99,8 +99,6 @@ class Queue:
                 return True
         return False
 
-        metadata = task.metadata
-
     def dequeue(self):
         if self.size == 0:
             return None
@@ -239,3 +237,4 @@ async def queue_worker():
         logger.info(f"Finished task: {task}")
 ```
 """
+
