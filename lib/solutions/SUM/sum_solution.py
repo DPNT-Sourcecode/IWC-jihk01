@@ -6,4 +6,3 @@ class SumSolution:
             return "incorrect argument x and y both need to be between 0 and 100"
             # raise ValueError('invalid value')
         return x + y
-
