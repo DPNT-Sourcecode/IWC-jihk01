@@ -81,7 +81,7 @@ class Queue:
         return metadata.get("earliest_timestamp", MAX_TIMESTAMP)
 
     def enqueue(self, item: TaskSubmission) -> int:
-        item.queue_index = self._counter
+        item.enqueue_index = self._counter
         self._counter +=1
 
         metadata = item.metadata
@@ -138,6 +138,7 @@ class Queue:
             key=lambda i: (
                 self._priority_for_task(i),
                 self._earliest_timestamp_for_task(i),
+                i.enqueue_index,        # task loaded earlier get processes earlier; FIFO
             )
         )
 
@@ -239,5 +240,6 @@ async def queue_worker():
         logger.info(f"Finished task: {task}")
 ```
 """
+
 
 
