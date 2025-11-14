@@ -27,6 +27,21 @@ def test_maintain_schedule_order() -> None:
     queue = QueueSolutionEntrypoint()
     queue.enqueue()
 
+    t1 = TaskSubmission(
+        provider="companies_house",
+        user_id=3,
+        timestamp=iso_ts(delta_minutes=0),
+        metadata={}
+    )
+
+    t1 = TaskSubmission(
+        provider="companies_house",
+        user_id=3,
+        timestamp=iso_ts(delta_minutes=0),
+        metadata={}
+    )
+
+
 
 
 
